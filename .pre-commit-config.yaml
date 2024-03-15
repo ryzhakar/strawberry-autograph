@@ -1,0 +1,69 @@
+---
+repos:
+    - repo: https://github.com/pre-commit/mirrors-autopep8
+      rev: v2.0.4
+      hooks:
+          - id: autopep8
+            name: format according to pep8
+            types: [python]
+    - repo: https://github.com/PyCQA/docformatter
+      rev: v1.7.5
+      hooks:
+          - id: docformatter
+            name: format docstrings
+            types: [python]
+    - repo: https://github.com/myint/unify
+      rev: v0.5
+      hooks:
+          - id: unify
+            name: enforce single quotes
+            types: [python]
+    - repo: https://github.com/asottile/pyupgrade
+      rev: v3.15.0
+      hooks:
+          - id: pyupgrade
+            name: modernize the code
+            args: [--py310-plus]
+            types: [python]
+    - repo: https://github.com/asottile/add-trailing-comma
+      rev: v3.1.0
+      hooks:
+          - id: add-trailing-comma
+            name: add trailing commas
+            args: [--py36-plus]
+            types: [python]
+    - repo: https://github.com/asottile/reorder_python_imports
+      rev: v3.12.0
+      hooks:
+          - id: reorder-python-imports
+            name: reorder python imports
+            types: [python]
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.5.0
+      hooks:
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-yaml
+          - id: check-added-large-files
+    - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+      rev: 0.2.3
+      hooks:
+          - id: yamlfmt
+            name: format YAML
+            args: [--mapping, '4', --sequence, '6', --offset, '4']
+    - repo: local
+      hooks:
+          - id: flake8
+            name: check styling consistency with flake8
+            entry: flake8
+            language: system
+            pass_filenames: true
+            types: [python]
+    - repo: https://github.com/python-poetry/poetry
+      rev: 1.7.0
+      hooks:
+          - id: poetry-check
+            name: check pyproject.toml
+          - id: poetry-lock
+            name: resolve dependencies and write a .lock file
+            args: [--no-update]
